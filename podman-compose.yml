@@ -17,6 +17,15 @@ services:
       - "CONANEXILES_Game_RconPlugin_RconPort=25575"
       - "CONANEXILES_Game_RconPlugin_RconMaxKarma=60"
       - "CONANEXILES_UPDATE_SHUTDOWN_TIMER=15"
+      # sane logging
+      - "CONANEXILES_Engine_Core.Log_LogStreaming=Error"
+      - "CONANEXILES_Engine_Core.Log_GlobalServerChannel=Error"
+      - "CONANEXILES_Engine_Core.Log_ConanBattlePass=Fatal"
+      - "CONANEXILES_Engine_Core.Log_SpawnTable=Error"
+      - "CONANEXILES_Engine_Core.Log_LogScriptCore=Error"
+      - "CONANEXILES_Engine_Core.Log_Network=Error"
+      - "CONANEXILES_Engine_Core.Log_LogNetPackageMap=Error"
+      - "CONANEXILES_Engine_Core.Log_LogModController=Error"  
     ports:
         - 7777:7777/udp
         - 7778:7778/udp
@@ -39,6 +48,15 @@ services:
       - "CONANEXILES_Game_RconPlugin_RconPassword=REDACTED"
       - "CONANEXILES_Game_RconPlugin_RconPort=25575"
       - "CONANEXILES_Game_RconPlugin_RconMaxKarma=60"
+      # sane logging
+      - "CONANEXILES_Engine_Core.Log_LogStreaming=Error"
+      - "CONANEXILES_Engine_Core.Log_GlobalServerChannel=Error"
+      - "CONANEXILES_Engine_Core.Log_ConanBattlePass=Fatal"
+      - "CONANEXILES_Engine_Core.Log_SpawnTable=Error"
+      - "CONANEXILES_Engine_Core.Log_LogScriptCore=Error"
+      - "CONANEXILES_Engine_Core.Log_Network=Error"
+      - "CONANEXILES_Engine_Core.Log_LogNetPackageMap=Error"
+      - "CONANEXILES_Engine_Core.Log_LogModController=Error"  
     ports:
         - 7779:7777/udp
         - 27017:27015/udp
@@ -60,6 +78,15 @@ services:
       - "CONANEXILES_Game_RconPlugin_RconPassword=REDACTED"
       - "CONANEXILES_Game_RconPlugin_RconPort=25575"
       - "CONANEXILES_Game_RconPlugin_RconMaxKarma=60"
+      # sane logging
+      - "CONANEXILES_Engine_Core.Log_LogStreaming=Error"
+      - "CONANEXILES_Engine_Core.Log_GlobalServerChannel=Error"
+      - "CONANEXILES_Engine_Core.Log_ConanBattlePass=Fatal"
+      - "CONANEXILES_Engine_Core.Log_SpawnTable=Error"
+      - "CONANEXILES_Engine_Core.Log_LogScriptCore=Error"
+      - "CONANEXILES_Engine_Core.Log_Network=Error"
+      - "CONANEXILES_Engine_Core.Log_LogNetPackageMap=Error"
+      - "CONANEXILES_Engine_Core.Log_LogModController=Error"  
     ports:
         - 7780:7777/udp
         - 27018:27015/udp
