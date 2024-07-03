@@ -1,8 +1,8 @@
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 
 LABEL maintainer="Garret Sidzaka"
 
-ENV TIMEZONE=Europe/Vienna \
+ENV TIMEZONE=UTC \
     DEBIAN_FRONTEND=noninteractive \
     CONANEXILES_MASTERSERVER=1 \
     CONANEXILES_Game_RconPlugin_RconEnabled=1 \
