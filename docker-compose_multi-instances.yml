@@ -16,6 +16,15 @@ services:
       - "CONANEXILES_Game_RconPlugin_RconPort=25575"
       - "CONANEXILES_Game_RconPlugin_RconMaxKarma=60"
       - "CONANEXILES_UPDATE_SHUTDOWN_TIMER=15"
+      # sane logging
+      - "CONANEXILES_Engine_Core.Log_LogStreaming=Error"
+      - "CONANEXILES_Engine_Core.Log_GlobalServerChannel=Error"
+      - "CONANEXILES_Engine_Core.Log_ConanBattlePass=Fatal"
+      - "CONANEXILES_Engine_Core.Log_SpawnTable=Error"
+      - "CONANEXILES_Engine_Core.Log_LogScriptCore=Error"
+      - "CONANEXILES_Engine_Core.Log_Network=Error"
+      - "CONANEXILES_Engine_Core.Log_LogNetPackageMap=Error"
+      - "CONANEXILES_Engine_Core.Log_LogModController=Error"  
       # Very Good Defaults
       - "CONANEXILES_Engine_/script/onlinesubsystemutils.ipnetdriver_NetServerMaxTickRate=30" #INSERT A VALUE OF 30 OR HIGHER
       - "CONANEXILES_Engine_/script/onlinesubsystemutils.ipnetdriver_MaxClientRate=600000"
