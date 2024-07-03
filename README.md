@@ -6,6 +6,13 @@
 [![Gitter](https://img.shields.io/gitter/room/alinmear/docker-conanexiles.svg?style=flat)](https://gitter.im/alinmear/docker-conanexiles)
 [![Donation](https://img.shields.io/badge/Buy%20me%20a-coffee-blue?style=flat)](https://www.paypal.com/donate?business=VGB57FGZRDEFQ&currency_code=EUR)
 
+## UNDER CONSTRUCTION.  SOME TESTING NOT COMPLETED.
+---
+Garret Sidzaka is the new maintainer.   He will be merging his changes slowly with this repo, and running tests.
+
+
+
+
 ---
 **NOTE**
 
