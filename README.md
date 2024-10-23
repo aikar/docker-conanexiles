@@ -8,11 +8,8 @@ Garret Sidzaka is the new maintainer.   He will be merging his changes slowly wi
 
 
 ---
-**NOTE**
 
-Mod support reworked. Manual Installation with mods.txt File will no longer work. Use the New Env Variable. See the mods section within this readme for more informations and the list of mods we are currently using on our dedicated server - i can heavily recommend them.
-
-While configuring my server and trying to fix some shortcomings i stumbled over an overwhelming good post about server tweaks: <https://steamcommunity.com/sharedfiles/filedetails/?id=2130895654>. After enabling those settings, conanexiles feels indeed like another game. I added those configs within the example `docker-compose.yml` and also within this Readme. Hopefuly this will make you game experience alot better...
+Source of server tweaks: <https://steamcommunity.com/sharedfiles/filedetails/?id=2130895654>
 
 ---
 
@@ -164,26 +161,6 @@ Default: CONANEXILES_INSTANCENAME = saved (the default config folder name)
 ## Mod Support
 
 Mods can be install with the global env variable `CONANEXILES_MODS`. Specify ModIDs as comma separated list there. E.g.
-
-```yaml
-version: "3.5"
-
-services:
-  ce0:
-    image: alinmear/docker-conanexiles:latest
-    depends_on: 
-      - redis
-    restart: unless-stopped
-    environment:
-      # Pippi: 880454836                                    # Servermanagemnt on another level
-      # Fashionist: 1159180273                              # Nice Styles, also restyle ingame
-      # Barbarian Barber: 2050780234                        # Very Nice Mod, with alot new hair styles; works well in combination with fashionist
-      # Nilfhein minimap: 1389908968                        # Very nice minimap
-      # Less Building Placement Restrictions: 1369743238    # Stop limitations of building system
-      # Lexa's Exiled Lands Improved: 2356146223            # Dual Wield (Sword, Axe) and some other nice enhacements
-      # Javelin Improved: 1701136207                        # One of the best, new javelin combos and styles, well balanced
-      - "CONANEXILES_MODS=880454836,1159180273,1389908968,1369743238,2050780234,2356146223,1701136207"
-```
 
 NOTE: Yout can get the modids from Steamworkshop.
 
