@@ -1,6 +1,6 @@
 ##savage wilds
   ce0:
-    image: alinmear/docker-conanexiles:latest
+    image: garretsidzaka/docker-conanexiles:latest
     container_name: ce0
     depends_on:
       - redis
@@ -223,7 +223,7 @@
 
 #siptah    
   ce1:
-    image: alinmear/docker-conanexiles:latest
+    image: garretsidzaka/docker-conanexiles:latest
     container_name: ce1
     depends_on:
       - redis
@@ -444,19 +444,9 @@
       - /etc/localtime:/etc/localtime:ro
 
 
-
-
-
-
-
-
-
-
-
-
-#Exiled_Expanse
+#Exiled
   ce2:
-    image: alinmear/docker-conanexiles:latest
+    image: garretsidzaka/docker-conanexiles:latest
     container_name: ce2
     depends_on:
       - redis
