@@ -1,4 +1,4 @@
-##savage wilds
+#master server
   ce0:
     image: garretsidzaka/docker-conanexiles:latest
     container_name: ce0
@@ -10,15 +10,17 @@
       - "CONANEXILES_CMDSWITCHES='-Port=7777 -QueryPort=27020'"
       - "CONANEXILES_SERVER_TYPE=pvp"
       - "CONANEXILES_ServerSettings_ServerSettings_AdminPassword=agoodpassword"
+      #custom map
       - "CONANEXILES_Engine_/Script/EngineSettings.GameMapsSettings_ServerDefaultMap=/Game/Mods/Savage_Wilds/Savage_Wilds"
+      #comment above line out to remove custom map
       - "CONANEXILES_ServerSettings_ServerSettings_IsVACEnabled=True"
       - "CONANEXILES_ServerSettings_ServerSettings_IsBattlEyeEnabled=True"
       - "CONANEXILES_ServerSettings_ServerSettings_serverRegion=1"
       - "CONANEXILES_MASTERSERVER=1"
       - "CONANEXILES_PORT=7777"
       - "CONANEXILES_QUERYPORT=27020"
-      - "CONANEXILES_Engine_OnlineSubSystemSteam_ServerName=SavageServer"
-      - "CONANEXILES_INSTANCENAME=SavageServer"
+      - "CONANEXILES_Engine_OnlineSubSystemSteam_ServerName=MyMasterServerName"
+      - "CONANEXILES_INSTANCENAME=MyMasterInstanceName"
       - "CONANEXILES_Game_RconPlugin_RconEnabled=1"
       - "CONANEXILES_Game_RconPlugin_RconPassword=agoodpassword"
       - "CONANEXILES_Game_RconPlugin_RconPort=25575"
@@ -221,7 +223,7 @@
         - ./conanexiles:/conanexiles
         - /etc/localtime:/etc/localtime:ro
 
-#siptah    
+#first minion server    
   ce1:
     image: garretsidzaka/docker-conanexiles:latest
     container_name: ce1
@@ -233,15 +235,17 @@
       - "CONANEXILES_CMDSWITCHES='-Port=7779 -QueryPort=27017'"
       - "CONANEXILES_SERVER_TYPE=pvp"
       - "CONANEXILES_ServerSettings_ServerSettings_AdminPassword=agoodpassword"
+      #custom map
       - "CONANEXILES_Engine_/Script/EngineSettings.GameMapsSettings_ServerDefaultMap=/Game/DLC_EXT/DLC_Siptah/Maps/DLC_Isle_of_Siptah"
+      #comment above line out to remove custom map
       - "CONANEXILES_ServerSettings_ServerSettings_IsVACEnabled=True"
       - "CONANEXILES_ServerSettings_ServerSettings_IsBattlEyeEnabled=True"
       - "CONANEXILES_ServerSettings_ServerSettings_serverRegion=1"
       - "CONANEXILES_MASTERSERVER=0"
       - "CONANEXILES_PORT=7779"
       - "CONANEXILES_QUERYPORT=27017"
-      - "CONANEXILES_Engine_OnlineSubSystemSteam_ServerName=Siptah"
-      - "CONANEXILES_INSTANCENAME=Siptah"
+      - "CONANEXILES_Engine_OnlineSubSystemSteam_ServerName=MyFirstMinionServerName"
+      - "CONANEXILES_INSTANCENAME=MyFirstMinionInstanceName"
       - "CONANEXILES_Game_RconPlugin_RconEnabled=1"
       - "CONANEXILES_Game_RconPlugin_RconPassword=agoodpassword"
       - "CONANEXILES_Game_RconPlugin_RconPort=25576"
@@ -444,7 +448,7 @@
       - /etc/localtime:/etc/localtime:ro
 
 
-#Exiled
+#secondMinion
   ce2:
     image: garretsidzaka/docker-conanexiles:latest
     container_name: ce2
@@ -456,14 +460,17 @@
       - "CONANEXILES_CMDSWITCHES='-Port=7781 -QueryPort=27018'"
       - "CONANEXILES_SERVER_TYPE=pvp"
       - "CONANEXILES_ServerSettings_ServerSettings_AdminPassword=agoodpassword"
+      #custom map
+      #- "CONANEXILES_Engine_/Script/EngineSettings.GameMapsSettings_ServerDefaultMap=/Game/Mods/Savage_Wilds/Savage_Wilds"
+      #comment above line out to remove custom map
       - "CONANEXILES_ServerSettings_ServerSettings_IsVACEnabled=True"
       - "CONANEXILES_ServerSettings_ServerSettings_IsBattlEyeEnabled=True"
       - "CONANEXILES_ServerSettings_ServerSettings_serverRegion=1"
       - "CONANEXILES_MASTERSERVER=0"
       - "CONANEXILES_PORT=7781"
       - "CONANEXILES_QUERYPORT=27018"
-      - "CONANEXILES_Engine_OnlineSubSystemSteam_ServerName=Exiled"
-      - "CONANEXILES_INSTANCENAME=Exiled"
+      - "CONANEXILES_Engine_OnlineSubSystemSteam_ServerName=MySecondMinionServerName"
+      - "CONANEXILES_INSTANCENAME=MySecondMinionInstanceName"
       - "CONANEXILES_Game_RconPlugin_RconEnabled=1"
       - "CONANEXILES_Game_RconPlugin_RconPassword=agoodpassword"
       - "CONANEXILES_Game_RconPlugin_RconPort=25577"
@@ -671,3 +678,22 @@
       - "TZ=UTC"
     volumes:
       - ./redis:/data/
+  redis:
+    image: redis:8-alpine
+    #image: redis:5-alpine
+    container_name: redis
+    restart: unless-stopped
+    environment:
+      - "TZ=UTC"
+    volumes:
+      - ./redis:/data/
+    ports:
+      - 6379:6379
+  redis_insight:
+    image: redislabs/redisinsight:latest
+    container_name: redis_insight
+    restart: unless-stopped
+    ports:
+      - 8001:8001
+    volumes:
+      - ./insight:/db
