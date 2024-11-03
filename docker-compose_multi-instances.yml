@@ -220,7 +220,7 @@
       - "25575:25575/tcp"
       - "25575:25575/udp"
     volumes:
-        - ./conanexiles:/conanexiles
+        - conanexiles:/conanexiles
         - /etc/localtime:/etc/localtime:ro
 
 #first minion server    
@@ -444,7 +444,7 @@
       - "25576:25576/tcp"
       - "25576:25576/udp"
     volumes:
-      - ./conanexiles:/conanexiles
+      - conanexiles:/conanexiles
       - /etc/localtime:/etc/localtime:ro
 
 
@@ -669,8 +669,9 @@
       - "25577:25577/tcp"
       - "25577:25577/udp"
     volumes:
-      - ./conanexiles:/conanexiles
+      - conanexiles:/conanexiles
       - /etc/localtime:/etc/localtime:ro
+      
   redis:
     image: redis:5-alpine
     container_name: redis
@@ -678,7 +679,7 @@
     environment:
       - "TZ=UTC"
     volumes:
-      - ./redis:/data/
+      - redis:/data/
     ports:
       - 6379:6379
   redis_insight:
@@ -688,4 +689,9 @@
     ports:
       - 8001:8001
     volumes:
-      - ./insight:/db
+      - insight:/db
+
+volumes:
+  conanexiles:
+  redis:
+  insight:
