@@ -217,7 +217,7 @@ services:
       - "25575:25575/tcp"
       - "25575:25575/udp"
     volumes:
-        - ./conanexiles:/conanexiles
+        - conanexiles:/conanexiles
         - /etc/localtime:/etc/localtime:ro
 
   redis:
@@ -227,7 +227,7 @@ services:
     environment:
       - "TZ=UTC"
     volumes:
-      - ./redis:/data/
+      - redis:/data/
     ports:
       - 6379:6379
   redis_insight:
@@ -237,4 +237,9 @@ services:
     ports:
       - 8001:8001
     volumes:
-      - ./insight:/db
+      - insight:/db
+
+volumes:
+  conanexiles:
+  redis:
+  insight:
