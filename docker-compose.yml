@@ -221,8 +221,7 @@ services:
         - /etc/localtime:/etc/localtime:ro
 
   redis:
-    image: redis:8-alpine
-    #image: redis:5-alpine
+    image: redis:5-alpine
     container_name: redis
     restart: unless-stopped
     environment:
