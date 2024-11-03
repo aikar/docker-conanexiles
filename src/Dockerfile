@@ -25,8 +25,8 @@ RUN dpkg --add-architecture i386 \
     && apt-get update \
     && apt-get install --install-recommends --assume-yes libsdl2-2.0-0 \
     && apt-get install --install-recommends --assume-yes winehq-devel \
-#    && pip3 install python-valve --break-system-packages \
-    && pip3 install python-valve \
+    && pip3 install python-valve --break-system-packages \
+#    && pip3 install python-valve \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
