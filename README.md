@@ -1,6 +1,10 @@
 # docker-conanexiles
 
 ## UNDER CONSTRUCTION.  SOME TESTING NOT COMPLETED.
+### Wishlist
+* Functional docker logging in 2404 Ubuntu image
+* Discord integration
+* ~Sane logging~
 ---
 Garret Sidzaka is the new maintainer.   He will be merging his changes slowly with this repo, and running tests.
 
