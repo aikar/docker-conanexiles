@@ -69,27 +69,6 @@ At the moment we need to use the devel branch, because the support for volumes i
 
 ---
 
-## Storage options
-
-A persistent data storage for the configuration and game data is required.
-
-No persistance = data is gone when the container shuts down!
-
-With Docker you got two options Volumes and Bind mounts - <https://docs.docker.com/storage/#more-details-about-mount-types>
-
-### Volume
-
-```yaml
-    volumes:
-        - data:/conanexiles
-```
-
-### Bind mount
-
-```yaml
-    volumes:
-        - /my-data:/conanexiles
-```
 
 ---
 
