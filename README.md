@@ -1,7 +1,7 @@
 # docker-conanexiles
 
 ## UNDER CONSTRUCTION.  SOME TESTING NOT COMPLETED.
-### Wishlist
+### Wishlist/ToDo
 * Functional docker logging in 2404 Ubuntu image
 * Discord integration
 * ~Sane logging~
