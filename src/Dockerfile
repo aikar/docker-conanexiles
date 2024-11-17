@@ -26,7 +26,6 @@ RUN dpkg --add-architecture i386 \
     && apt-get install --install-recommends --assume-yes libsdl2-2.0-0 \
     && apt-get install --install-recommends --assume-yes winehq-devel \
     && pip3 install python-valve --break-system-packages \
-#    && pip3 install python-valve \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -39,7 +38,7 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-#COPY . ./
+COPY . ./
 
 RUN ln -snf /usr/share/zoneinfo/$TIMEZONE /etc/localtime \
     && echo $TIMEZONE > /etc/timezone \
@@ -52,7 +51,7 @@ RUN mkdir -p /usr/share/wine/mono /usr/share/wine/gecko \
     && wget -q http://dl.winehq.org/wine/wine-gecko/2.47.2/wine-gecko-2.47.2-x86_64.msi -O /usr/share/wine/gecko/wine-gecko-2.47.2-x86_64.msi \
     && wget -q http://dl.winehq.org/wine/wine-gecko/2.47.2/wine-gecko-2.47.2-x86.msi -O /usr/share/wine/gecko/wine-gecko-2.47.2-x86.msi
 
-COPY . ./
+#COPY . ./
 
 EXPOSE 7777/udp 25575 27015/udp 27016/udp 37015/udp 37016/udp 5900
 
