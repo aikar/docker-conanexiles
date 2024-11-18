@@ -31,7 +31,7 @@ RUN dpkg --add-architecture i386 \
 
 # Install winetricks
 ADD https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks /usr/bin/winetricks
-RUN chmod +x /usr/bin/winetricks
+RUN chmod +rx /usr/bin/winetricks
 
 RUN apt-get update \
     && apt-get install -y x11vnc strace cabextract \
@@ -42,16 +42,16 @@ COPY . ./
 
 RUN ln -snf /usr/share/zoneinfo/$TIMEZONE /etc/localtime \
     && echo $TIMEZONE > /etc/timezone \
-    && chmod +x /entrypoint.sh \
+    && chmod +rx /entrypoint.sh \
     && cd /usr/bin/ \
-    && chmod +x conanexiles_controller rconcli steamcmd_setup
+    && chmod +rx conanexiles_controller rconcli steamcmd_setup \
+    && cd /var/lib/conanexiles/ \
+    && chmod +rx notifier.sh redis_cmds.sh
 
 RUN mkdir -p /usr/share/wine/mono /usr/share/wine/gecko \
     && wget -q http://dl.winehq.org/wine/wine-mono/5.1.1/wine-mono-5.1.1-x86.msi -O /usr/share/wine/mono/wine-mono-5.1.1-x86.msi \
     && wget -q http://dl.winehq.org/wine/wine-gecko/2.47.2/wine-gecko-2.47.2-x86_64.msi -O /usr/share/wine/gecko/wine-gecko-2.47.2-x86_64.msi \
     && wget -q http://dl.winehq.org/wine/wine-gecko/2.47.2/wine-gecko-2.47.2-x86.msi -O /usr/share/wine/gecko/wine-gecko-2.47.2-x86.msi
-
-#COPY . ./
 
 EXPOSE 7777/udp 25575 27015/udp 27016/udp 37015/udp 37016/udp 5900
 
