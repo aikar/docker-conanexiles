@@ -315,7 +315,7 @@ wine --version
 wget http://crt.usertrust.com/USERTrustRSAAddTrustCA.crt -O /usr/local/share/ca-certificates/USERTrustRSAAddTrustCA.crt
 update-ca-certificates
 
-ln -s ${_log_folder}/ConanSandbox.log /conanlogs/${CONANEXILES_INSTANCENAME}ConanSandbox.log
+ln -sf ${_log_folder}/ConanSandbox.log /conanlogs/${CONANEXILES_INSTANCENAME}ConanSandbox.log
 
 
 # start supervisord
