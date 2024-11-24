@@ -292,7 +292,7 @@ start_master_loop() {
         [[ $(check_server_running) == 1 ]] && \
                 start_server
 
-        sleep 60
+        sleep 600
     done
 }
 
