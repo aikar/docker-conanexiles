@@ -1,15 +1,7 @@
 # docker-conanexiles
 
-## UNDER CONSTRUCTION.  SOME TESTING NOT COMPLETED.
-### Wishlist/ToDo
-* Functional docker logging in 2404 Ubuntu image
-* Discord integration
-* ~Sane logging~
----
-Garret Sidzaka is the new maintainer.   He will be merging his changes slowly with this repo, and running tests.
-
-
-
+This image was forked from the Alinmear's excellent docker image.  The underlying stack has been updated to 2024 versions, and there are various tweaks and fixed added, as well as additional in-line documentation
+There is more features on the roadmap, and community feedback, issues, and code pushes are welcome.
 
 ---
 
@@ -26,17 +18,18 @@ Source of server tweaks: <https://steamcommunity.com/sharedfiles/filedetails/?id
 * Templates for first time setup
 * Running multiple instances with multiple config directories
 * RCON Support (Ingame Broadcast Msgs for Server events like update) --> DEFAULT ENABLED
+* Logging support
 
 ---
+### Wishlist/ToDo
+* Discord integration
+---
 
-## Usage
-
-**READ the following sections [Storage options](#storage-options), [First Time Setup](#first-time-setup), [Multi Instance Setup](#multi-instance-setup) & [Environment Variables and Config Options](#environment-variables-and-config-options) if you have not used this image before!**
 
 ### Get started
 
 ```sh
-curl -LJO https://raw.githubusercontent.com/alinmear/docker-conanexiles/master/docker-compose.yml
+curl -LJO https://raw.githubusercontent.com/garretsidzaka/docker-conanexiles/master/docker-compose.yml
 docker-compose pull
 ```
 
@@ -61,14 +54,6 @@ docker-compose pull
 ## Create a simplified `docker-compose.yml`
 
 The `docker-compose.yml` file can be customized e.g. if you do not want to run several game servers.
-
-
-
-At the moment we need to use the devel branch, because the support for volumes is only available there. Also `restart: unless-stopped` is not supported so we need to replace this with `restart: always`.
-
-
----
-
 
 ---
 
