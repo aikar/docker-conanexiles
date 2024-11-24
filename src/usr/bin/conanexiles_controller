@@ -292,7 +292,7 @@ start_master_loop() {
         [[ $(check_server_running) == 1 ]] && \
                 start_server
 
-        sleep 600
+        sleep 300
     done
 }
 
@@ -311,7 +311,7 @@ start_slave_loop() {
             [[ $(check_server_running) == 1 ]] && \
                 start_server
         fi
-        sleep 10
+        sleep 30
     done
 }
 
