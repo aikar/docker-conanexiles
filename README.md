@@ -14,11 +14,11 @@ Original Author: https://github.com/alinmear/docker-conanexiles
 
 * Full automatic provisioning of Steam and Conan Exiles Dedicated Server
 * Mod Support
-* Autoupdate and restart of the Conan Exiles server
+* Autoupdate of the Conan Exiles server
 * Full control of every config aspect via Environment variables
 * Templates for first time setup
 * Running multiple instances with multiple config directories
-* RCON Support (Ingame Broadcast Msgs for Server events like update) --> DEFAULT ENABLED
+* RCON Support (supported but unreliable due to Funcom)
 * Logging support
 
 ---
@@ -34,13 +34,10 @@ curl -LJO https://raw.githubusercontent.com/garretsidzaka/docker-conanexiles/mas
 docker-compose pull
 ```
 
-#### Start all services (3 games services and 1 redis)
+#### Start all services 
 
 `docker-compose up -d`
 
-#### Start one game service and redis
-
-`docker compose up -d`
 
 ### Update image and rollout
 
@@ -95,7 +92,7 @@ The Master-Server is taking care about the binaries, more precisely keeping it u
 
 **NOTE**: There should always be only 1 Master-Server-Instance, otherwise it could break your setup, if two master server are updating at the same time.
 
-!! **STANDARD-Behavior**: The Docker Image itself sets der master-server value to 1, which means that each server is a master server. For a multi instance setup you have to explicit set CONANEXILES_MASTERSERVER=0. You also have to specify the CONANEXILES_INSTANCENAME, otherwise your instances would write changes into the same db --> kaboom.
+!! **STANDARD-Behavior**: The Docker Image itself sets the master-server value to 1, which means that each server is a master server. For a multi instance setup you have to explicit set CONANEXILES_MASTERSERVER=0. You also have to specify the CONANEXILES_INSTANCENAME, otherwise your instances would write changes into the same db and break everything.
 
 ENV-VARS to Setup:
 
