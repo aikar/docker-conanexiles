@@ -23,7 +23,6 @@ RUN dpkg --add-architecture i386 \
     && curl https://dl.winehq.org/wine-builds/winehq.key | apt-key add - \
     && apt-add-repository 'https://dl.winehq.org/wine-builds/ubuntu/' \
     && apt-get update \
-    && apt-get install --install-recommends --assume-yes libsdl2-2.0-0 \
     && apt-get install --install-recommends --assume-yes winehq-devel \
     && pip3 install python-valve --break-system-packages \
     && apt-get clean \
