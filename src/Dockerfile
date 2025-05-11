@@ -1,12 +1,12 @@
 FROM ubuntu:24.04
 
-LABEL maintainer="GarretSidzaka"
+LABEL maintainer="Aikar"
 
 ENV TIMEZONE=UTC \
     DEBIAN_FRONTEND=noninteractive \
     CONANEXILES_MASTERSERVER=1 \
-    CONANEXILES_Game_RconPlugin_RconEnabled=1 \
-    CONANEXILES_Game_RconPlugin_RconPassword=Password \
+    CONANEXILES_Game_RconPlugin_RconEnabled=0 \
+    CONANEXILES_Game_RconPlugin_RconPassword= \
     CONANEXILES_Game_RconPlugin_RconPort=25575 \
     CONANEXILES_Game_RconPlugin_RconMaxKarma=60 \
     CONANEXILES_Engine_Core.Log_LogStreaming=Warning \
@@ -54,7 +54,7 @@ RUN mkdir -p /usr/share/wine/mono /usr/share/wine/gecko \
 
 EXPOSE 7777/udp 25575 27015/udp 27016/udp 37015/udp 37016/udp 5900
 
-VOLUME ["/conanexiles"]
+VOLUME ["/conanexiles", "/configs"]
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["supervisord"]

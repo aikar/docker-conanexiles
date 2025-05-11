@@ -1,7 +1,6 @@
 #!/bin/bash
 
 source /var/lib/conanexiles/redis_cmds.sh
-
 # defaults
 if [ -z $CONANEXILES_INSTANCENAME ]
 then
@@ -38,6 +37,7 @@ ServerSettings\
 
 # Matchgroup 3 can be unspecific like that, because Keys have no "_" in Exiles Config
 _env_regex="CONANEXILES_([a-zA-Z]+)_(.*)_(.*)=(.*)"
+_env_merge_regex="CONANEXILES_CONFIG_([a-zA-Z]+)=(.*)"
 
 init_master_server_instance() {
     [[ $CONANEXILES_MASTERSERVER == 1 ]] && redis_cmd_proxy redis_set_master_server_instance
@@ -107,7 +107,7 @@ PVPEnabled=True
 AdminPassword=ChangeMe
 NPCMindReadingMode=0
 MaxNudity=2
-ServerCommunity=0
+ServerCommunity=2
 ConfigVersion=3
 BlueprintConfigVersion=14
 PlayerKnockbackMultiplier=1.000000
@@ -138,7 +138,7 @@ PlayerXPHarvestMultiplier=1.000000
 PlayerXPCraftMultiplier=1.000000
 PlayerXPTimeMultiplier=1.000000
 DogsOfTheDesertSpawnWithDogs=False
-CrossDesertOnce=True
+CrossDesertOnce=False
 WeaponEffectBoundsShorteningFraction=0.200000
 EnforceRotationRateWhenRoaming_2=True
 EnforceRotationRateInCombat_2=True
@@ -149,7 +149,7 @@ RotateToTargetSendsAngularVelocity=True
 TargetPredictionMaxSeconds=1.000000
 TargetPredictionAllowSecondsForAttack=0.400000
 MaxAggroRange=9000.000000
-serverRegion=256
+serverRegion=1
 LandClaimRadiusMultiplier=1.000000
 ItemConvertionMultiplier=1.000000
 PathFollowingSendsAngularVelocity=False
@@ -158,23 +158,23 @@ ConciousnessDamageMultiplier=1.000000
 ValidatePhysNavWalkWithRaycast=True
 LocalNavMeshVisualizationFrequency=-1.000000
 UseLocalQuadraticAngularVelocityPrediction=True
-AvatarsDisabled=False
+AvatarsDisabled=True
 AvatarLifetime=60.000000
 AvatarSummonTime=20.000000
 IsBattlEyeEnabled=False
-RegionAllowAfrica=True
-RegionAllowAsia=True
+RegionAllowAfrica=False
+RegionAllowAsia=False
 RegionAllowCentralEurope=True
 RegionAllowEasternEurope=True
 RegionAllowWesternEurope=True
 RegionAllowNorthAmerica=True
 RegionAllowOceania=True
-RegionAllowSouthAmerica=True
+RegionAllowSouthAmerica=False
 RegionBlockList=
 bCanBeDamaged=True
 CanDamagePlayerOwnedStructures=True
-EnableSandStorm=True
-ClanMaxSize=22
+EnableSandStorm=False
+ClanMaxSize=8
 HarvestAmountMultiplier=1
 ResourceRespawnSpeedMultiplier=1
 """
@@ -229,7 +229,7 @@ RotateToTargetSendsAngularVelocity=True
 TargetPredictionMaxSeconds=1.000000
 TargetPredictionAllowSecondsForAttack=0.400000
 MaxAggroRange=9000.000000
-serverRegion=256
+serverRegion=1
 LandClaimRadiusMultiplier=1.000000
 ItemConvertionMultiplier=1.000000
 PathFollowingSendsAngularVelocity=False
@@ -238,23 +238,23 @@ ConciousnessDamageMultiplier=1.000000
 ValidatePhysNavWalkWithRaycast=True
 LocalNavMeshVisualizationFrequency=-1.000000
 UseLocalQuadraticAngularVelocityPrediction=True
-AvatarsDisabled=False
+AvatarsDisabled=True
 AvatarLifetime=60.000000
 AvatarSummonTime=20.000000
 IsBattlEyeEnabled=False
-RegionAllowAfrica=True
-RegionAllowAsia=True
+RegionAllowAfrica=False
+RegionAllowAsia=False
 RegionAllowCentralEurope=True
 RegionAllowEasternEurope=True
 RegionAllowWesternEurope=True
 RegionAllowNorthAmerica=True
 RegionAllowOceania=True
-RegionAllowSouthAmerica=True
+RegionAllowSouthAmerica=False
 RegionBlockList=
 bCanBeDamaged=True
 CanDamagePlayerOwnedStructures=False
 EnableSandStorm=True
-ClanMaxSize=22
+ClanMaxSize=8
 HarvestAmountMultiplier=1
 ResourceRespawnSpeedMultiplier=1
 EverybodyCanLootCorpse=False
@@ -285,7 +285,14 @@ function override_config() {
             # workaround for --set problem. Otherwise crudini will create multiple entries at container startup
             crudini --set --existing "${_config_folder}/${filename}" "${section}" "${key}" "${value}"
             [[ $? != 0 ]] && echo "Creating Config Entry" && crudini --set "${_config_folder}/${filename}" "${section}" "${key}" "${value}"
-            fi
+        fi
+        if [[ "$env_variable =~ $_env_merge_regex ]]
+        then
+            filename="${BASH_REMATCH[1]}.ini"
+            fromfile="${BASH_REMATCH[2]}"
+            echo "Merging $fromfile into ${_config_folder}/${filename}"
+            crudini --merge "${_config_folder}/${filename}" < /configs/$fromfile
+        fi
 	done
     fi
 }
